@@ -1,0 +1,79 @@
+<html>
+<head>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <title>Give Block Chain</title>
+</head>
+</head>
+<body>
+    <nav class="navbar navbar-expand  navbar-dark bg-dark">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="/">Home</a>
+			</div>
+			<div>
+				<ul class="navbar-nav mr-auto">
+						<% if(session){ %>
+							<li style="padding-top: 7px; color: white">[<%= session %>님]</li>
+							<li class="nav-item"><a class="nav-link" href="/logout">로그아웃 </a></li>
+							<li class="nav-item"><a class="nav-link" href="/mypage">마이페이지</a></li>
+						<% }else { %>
+							<li class="nav-item"><a class="nav-link" href="/login">로그인 </a></li>
+							<li class="nav-item"><a class="nav-link" href='/addmember'>회원 가입</a></li>
+						<% } %>
+					<li class="nav-item"><a class="nav-link" href="/view">기부 목록</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div class="jumbotron">
+		<div class="container">
+			<h1 class="display-3">상세 기부 내용</h1>
+		</div>
+	</div>
+
+	<div class="container">
+			<div class="form-group row">
+				<label class="col-sm-2 control-label" >성명</label>
+				<div class="col-sm-3">
+					<%= data[0].name %>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-sm-2 control-label" >제목</label>
+				<div class="col-sm-5">
+					<%= data[0].subject %>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-sm-2 control-label" >내용</label>
+				<div class="col-sm-8" style="word-break: break-all;">
+					<%= data[0].content %>
+				</div>
+			</div>
+            <div class="form-group row">
+				<label class="col-sm-2 control-label" >지갑주소</label>
+				<div class="col-sm-8" style="word-break: break-all;">
+					<%= wallet_address %>
+				</div>
+			</div>
+			<div class="form-group row">
+				<div class="col-sm-offset-2 col-sm-10 ">
+                    <% if(session == data[0].id){  %>
+						<p>
+							<a	href="/deleteview/<%=data[0].num%>" class="btn btn-danger"> 삭제</a> 
+                    <% } %>
+					<a href="/view" class="btn btn-primary"> 목록</a>
+                    <a href="/trans/<%=data[0].id%>" class="btn btn-primary"> 기부하기</a>
+				</div>
+			</div>
+		<hr>
+	</div>
+    <%- include('footer') %>
+</body>
+</html>
+
+

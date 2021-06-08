@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <title>Give Block Chain</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand  navbar-dark bg-dark">
+      <div class="container">
+         <div class="navbar-header">
+            <a class="navbar-brand" href="/">Home</a>
+         </div>
+         <div>
+            <ul class="navbar-nav mr-auto">
+               <li style="padding-top: 7px; color: white">[<%= session %>님]</li>
+               <li class="nav-item"><a class="nav-link" href="/logout">로그아웃 </a></li>
+               <li class="nav-item"><a class="nav-link" href="/mypage">마이페이지</a></li>
+               <li class="nav-item"><a class="nav-link" href="/view">기부 목록</a></li>
+            </ul>
+         </div>
+      </div>
+   </nav>
+
+    <div class="jumbotron">
+      <div class="container">
+         <h1 class="display-3">트랜잭션</h1>
+      </div>
+   </div>
+
+   <div class="container">
+      <form action="/trans" method="post" class="form-horizontal">
+         <div class="form-group row">
+            <label class="col-sm-2 control-label" >내 지갑 주소</label>
+            <div class="col-sm-5">
+               <p><input type="text" class="form-control" name="sender_Address" value="<%=data.wallet_address%>" readonly />
+            </div>
+         </div>
+         <div class="form-group row">
+            <label class="col-sm-2 control-label">상대 지갑 주소</label>
+            <div class="col-sm-5">
+               <input type="text" class="form-control" name="target_Address" value="<%= target.wallet_address %>" />
+            </div>
+         </div>
+         <div class="form-group row">
+            <label class="col-sm-2 control-label">현재 지갑 잔고</label>
+            <div class="col-sm-3">
+                <p><input type="text" class="form-control" name="havecoin" value='<%=data.coin %>' readonly />
+            </div>
+         </div>
+         <div class="form-group row">
+            <label class="col-sm-2 control-label">보낼 코인</label>
+            <div class="col-sm-3">
+               <input type="number" class="form-control" name="amount">
+            </div>
+         </div>
+         <div class="form-group row">
+            <div class="col-sm-offset-2 col-sm-10 ">
+               <input type="submit" class="btn btn-primary" value="전송"/>
+               <input type="reset" class="btn btn-primary " value="취소 ">
+            </div>
+         </div>
+      </form>
+      <hr>
+   </div>
+    <%- include('footer') %>
+</body>
+</html>

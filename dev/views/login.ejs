@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <title>Give Block Chain</title>
+</head>
+<body>
+	<nav class="navbar navbar-expand  navbar-dark bg-dark">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="/">Home</a>
+			</div>
+			<div>
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item"><a class="nav-link" href="/login">로그인 </a></li>
+					<li class="nav-item"><a class="nav-link" href='/addmember'>회원 가입</a></li>
+					<li class="nav-item"><a class="nav-link" href="/view">기부 목록</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	
+	<div class="jumbotron">
+		<div class="container">
+			<h1 class="display-3">로그인</h1>
+		</div>
+	</div>
+	<div class="container">
+		<div class="col-md-4 col-md-offset-4">
+			<h3 class="form-signin-heading">Please sign in</h3>
+			<form action="/verify" method="post">
+				<div class="form-group">
+					<input type="text" class="form-control" name='username' placeholder="ID">
+                </div>
+                <div class="form-group">
+					<input	type="password" class="form-control" name='password' placeholder="Password">
+				</div>
+				<button class="btn btn btn-lg btn-success btn-block" type="submit">로그인</button>
+			</form>
+		</div>
+	</div>
+</body>
+</html>
