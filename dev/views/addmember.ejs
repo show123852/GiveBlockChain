@@ -17,7 +17,8 @@
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item"><a class="nav-link" href="/login">로그인 </a></li>
 					<li class="nav-item"><a class="nav-link" href='/addmember'>회원 가입</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">기부 목록</a></li>
+					<li class="nav-item"><a class="nav-link" href="/view">기부 목록</a></li>
+					<li class="nav-item"><a class="nav-link" href="/block-explorer">기부내역</a></li>
 				</ul>
 			</div>
 		</div>
@@ -93,6 +94,14 @@
 						<option>nate.com</option>
 					</select>
 				</div>				
+			</div>
+			<div class="form-group  row">
+				<label class="col-sm-2">가입 목적</label>
+				<div class="col-sm-10">
+					<input name="clienttype" type="radio" value="sender" /> 기부하기
+					<input name="clienttype" type="radio" value="recipient" /> 기부받기
+					<input name="clienttype" type="radio" value="market" /> 제휴사
+				</div>
 			</div>
 			<div class="form-group  row">
 				<label class="col-sm-2">전화번호</label>

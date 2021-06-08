@@ -19,6 +19,7 @@
 					<li class="nav-item"><a class="nav-link" href="/logout">로그아웃 </a></li>
 					<li class="nav-item"><a class="nav-link" href="/mypage">마이페이지</a></li>
 					<li class="nav-item"><a class="nav-link" href="/view">기부 목록</a></li>
+					<li class="nav-item"><a class="nav-link" href="/block-explorer">기부내역</a></li>
 				</ul>
 			</div>
 		</div>
@@ -97,6 +98,15 @@
 						<option>gmail.com</option>
 						<option>nate.com</option>
 					</select>
+				</div>
+			</div>
+			<div class="form-group  row">
+				<label class="col-sm-2">가입 목적</label>
+				<div class="col-sm-10">
+					<input name="clienttype" type="radio" value="sender" <% if(clienttype === "sender"){%> checked <%}%>/> 기부하기
+					<input name="clienttype" type="radio" value="recipient" <% if(clienttype === "recipient"){%> checked <%}%> /> 기부받기
+					<input name="clienttype" type="radio" value="market" <% if(clienttype === "market"){%> checked <%}%> /> 제휴사
+
 				</div>
 			</div>
 			<div class="form-group  row">

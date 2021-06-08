@@ -10,12 +10,38 @@
 </head>
 
 <body ng-app="BlockExplorer">
-	<div class="container" ng-controller="MainController">
-		<div class="row">
-			<div class="col-md-8 offset-md-2">
-				<h1 id="page-title">기부 내역 검색</h1>
+
+	<nav class="navbar navbar-expand  navbar-dark bg-dark">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="/">Home</a>
+			</div>
+			<div>
+				<ul class="navbar-nav mr-auto">
+						<% if(session){ %>
+							<li style="padding-top: 7px; color: white">[<%= session %>님]</li>
+							<li class="nav-item"><a class="nav-link" href="/logout">로그아웃 </a></li>
+							<li class="nav-item"><a class="nav-link" href="/mypage">마이페이지</a></li>
+						<% }else { %>
+							<li class="nav-item"><a class="nav-link" href="/login">로그인 </a></li>
+							<li class="nav-item"><a class="nav-link" href='/addmember'>회원 가입</a></li>
+						<% } %>
+					<li class="nav-item"><a class="nav-link" href="/view">기부 목록</a></li>
+				</ul>
 			</div>
 		</div>
+	</nav>
+	
+	<div class="jumbotron">
+		<div class="container">
+			<h1 class="display-3">Block Explorer</h1>
+		</div>
+	</div>
+
+	<div class="container" ng-controller="MainController">
+	
+	
+
 		<div class="row">
 			<div class="col-md-6 offset-md-3">
 				<form ng-submit="search(searchValue)">
@@ -119,7 +145,7 @@
 			</div>
 		</div>
 	</div>
-
+	<%- include('footer') %>
 	<script>
 		window.app = angular.module('BlockExplorer', []);
 
@@ -177,12 +203,12 @@
 	<style type="text/css">
 		html, body {
 			min-height: 100vh;
-			background-color: #e8e8e8;
+			/* background-color: #e8e8e8; */
 		}
-		.container {
+		/* .container {
 			padding-top: 50px;
 			padding-bottom: 50px;
-		}
+		} */
 		#page-title {
 			text-align: center;
 			margin-bottom: 40px;

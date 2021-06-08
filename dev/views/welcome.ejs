@@ -37,12 +37,12 @@
 							<li style="padding-top: 7px; color: white">[<%= session %>님]</li>
 							<li class="nav-item"><a class="nav-link" href="/logout">로그아웃 </a></li>
 							<li class="nav-item"><a class="nav-link" href="/mypage">마이페이지</a></li>
-							<li class="nav-item"><a class="nav-link" href="/register-and-broadcast-node">블록체인 접속</a></li>
 						<% }else { %>
 							<li class="nav-item"><a class="nav-link" href="/login">로그인 </a></li>
 							<li class="nav-item"><a class="nav-link" href='/addmember'>회원 가입</a></li>
 						<% } %>
 					<li class="nav-item"><a class="nav-link" href="/view">기부 목록</a></li>
+					<li class="nav-item"><a class="nav-link" href="/block-explorer">기부내역</a></li>
 				</ul>
 			</div>
 		</div>
@@ -61,7 +61,11 @@
 			<h3>
 				<%= tagline %>
 			</h3>
-			현재 접속 시각 : <%= CT %>
+			<br>
+			<% if(session){%> <a class="btn - btn-danger" href="/register-and-broadcast-node">블록체인 접속</a><%}%>
+			<br>
+			<br>
+			<p>현재 접속 시각 : <%= CT %>
 		</div>
 		<hr>
 	</div>

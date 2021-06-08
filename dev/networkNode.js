@@ -16,6 +16,40 @@ const nodeAddress = uuid().split('-').join('');
 const bitcoin = new Blockchain();
 
 
+
+const options = {
+    host : 'localhost',
+    port : 3306,
+    user : 'root',
+    password : '1234',
+    database :'webmarketsrcdb'
+};
+
+const sessionStore = new MySQLStore(options);
+
+const connection = mysql.createConnection({
+    host : 'localhost',
+    port : 3306,
+    user : 'root',
+    password : '1234',
+    database :'webmarketsrcDB'
+});
+
+connection.connect();
+
+
+app.use(session({
+    secret : "ghfdhdhdfghdfghfgdh24234",
+    resave : false,
+    saveUninitialized : true,
+    store : sessionStore
+}));
+
+
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
+app.engine('html', require('ejs').renderFile);
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -316,49 +350,13 @@ app.get('/address/:address', function(req, res) {
 });
 
 
-
-// block explorer
-app.get('/block-explorer', function(req, res) {
-	res.sendFile('./block-explorer/index.html', { root: __dirname });
-});
+app.get('/block-explorer',function(req,res){
+    res.render("blockexplorer.ejs",{session:req.session.Display});
+})
 
 
 /////////////////////////////////////////////////////////////////////
 
-
-
-const options = {
-    host : 'localhost',
-    port : 3306,
-    user : 'root',
-    password : '1234',
-    database :'webmarketsrcdb'
-};
-
-const sessionStore = new MySQLStore(options);
-
-const connection = mysql.createConnection({
-    host : 'localhost',
-    port : 3306,
-    user : 'root',
-    password : '1234',
-    database :'webmarketsrcDB'
-});
-
-connection.connect();
-
-
-app.use(session({
-    secret : "ghfdhdhdfghdfghfgdh24234",
-    resave : false,
-    saveUninitialized : true,
-    store : sessionStore
-}));
-
-
-app.set('views', __dirname + '/views');
-app.set('view engine', 'ejs');
-app.engine('html', require('ejs').renderFile);
 
 //홈페이지
 app.get('/', function(req, res){
@@ -420,7 +418,8 @@ app.get(['/mypage'], function(req,res){
             phone : rows[0].phone,
             address : rows[0].address,
             wallet_address : rows[0].wallet_address,
-            coin : rows[0].coin
+            coin : rows[0].coin,
+            clienttype : rows[0].clienttype
            });
         }
     });
@@ -584,13 +583,14 @@ app.post('/processAddMember', function(req,res){
     var address = req.body.address;
     var getforSHA256 = id+password+name+gender;
     var coin = 0;
+    var clienttype = req.body.clienttype;
 
     let date = new Date();
 
     var hash = sha256(getforSHA256);
 
-    var sql = 'INSERT INTO member VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
-    var params = [id, password, name, gender, birth, mail, phone, address, date, hash, coin];
+    var sql = 'INSERT INTO member VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+    var params = [id, password, name, gender, birth, mail, phone, address, date, hash, coin, clienttype];
 
     connection.query(sql, params, function(error, rows, fields){
         if(error){
@@ -610,6 +610,7 @@ app.post('/updatemember', function(req, res){
     var year = req.body.birthyy;
     var month= req.body.birthmm;
     var day = req.body.birthdd;
+    var clienttype = req.body.clienttype;
     var birth = year + "/" + month + "/" + day;
     var mail1 = req.body.mail1;
     var mail2 = req.body.mail2;
@@ -617,8 +618,8 @@ app.post('/updatemember', function(req, res){
     var phone = req.body.phone;
     var address = req.body.address;
 
-    var sql = 'UPDATE MEMBER SET PASSWORD=?, NAME=?, GENDER=?, BIRTH=?, MAIL=?, PHONE=?, ADDRESS=? WHERE ID=?';
-    var params = [password, name, gender, birth, mail, phone, address, id];
+    var sql = 'UPDATE MEMBER SET PASSWORD=?, NAME=?, GENDER=?, BIRTH=?, MAIL=?, PHONE=?, ADDRESS=?, clienttype=? WHERE ID=?';
+    var params = [password, name, gender, birth, mail, phone, address, clienttype, id];
 
     connection.query(sql, params, function(error, results){
         if(error) {
